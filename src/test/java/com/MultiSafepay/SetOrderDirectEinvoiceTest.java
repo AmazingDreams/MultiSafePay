@@ -17,9 +17,9 @@ public class SetOrderDirectEinvoiceTest {
 	@Test
 	public void main() {
     	java.util.Date date		= new java.util.Date();
-    	
-    	MultiSafepayClient.init(true);
-    	
+
+		MultiSafepayClient client = new MultiSafepayClient("", true);
+
     	Customer customer	 	= new Customer();
     	customer.first_name  	= "John";
     	customer.last_name   	= "Doe";
@@ -50,7 +50,7 @@ public class SetOrderDirectEinvoiceTest {
     			customer
     	);
     	
-    	JsonObject jsonResponse  = MultiSafepayClient.createOrder(order);
+    	JsonObject jsonResponse  = client.createOrder(order);
     	System.out.println(jsonResponse);
 	}
 }

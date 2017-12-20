@@ -11,9 +11,9 @@ public class GetOrderTest {
 
 	@Test
 	public void main() {
-		MultiSafepayClient.init(true);
+		MultiSafepayClient client = new MultiSafepayClient("", true);
 
-		JsonObject jsonResponse = MultiSafepayClient.GetOrder("1418980067470");
+		JsonObject jsonResponse = client.GetOrder("1418980067470");
 
 		System.out.println(jsonResponse);
 	}

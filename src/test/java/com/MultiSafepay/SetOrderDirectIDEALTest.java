@@ -14,8 +14,8 @@ public class SetOrderDirectIDEALTest {
 	public void main() {
     	java.util.Date date		= new java.util.Date();
 
-    	MultiSafepayClient.init(true);
-    	
+		MultiSafepayClient client = new MultiSafepayClient("", true);
+
     	Order order = new Order();
     	order.setDirectIdeal(
     			Long.toString(date.getTime()), 
@@ -27,10 +27,10 @@ public class SetOrderDirectIDEALTest {
     			
     	);
     	
-    	JsonObject jsonResponse 	= MultiSafepayClient.createOrder(order);
+    	JsonObject jsonResponse 	= client.createOrder(order);
     	System.out.println(jsonResponse);
     	
-    	String payment_url			= MultiSafepayClient.getPaymenUrl(jsonResponse);
+    	String payment_url			= client.getPaymenUrl(jsonResponse);
     	System.out.println("Payment Url: " + payment_url);
     }
 }

@@ -1,125 +1,107 @@
 package com.MultiSafepay.client;
 
-import java.lang.reflect.Type;
+import com.MultiSafepay.classes.Order;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.MultiSafepay.classes.*;
-import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
-
-
 public class MultiSafepayClient {
-	
-	//Edit this lines
-	public static String api_key 		= "YOUR_API_KEY"; //Key provided by MultisafePay
-	public static String USER_AGENT 	= "Mozilla/5.0";
-	
-	//No edit after this lines
-	public static boolean testMode 		= true;
-	
-	private static String tesApitUrl 	= "https://testapi.multisafepay.com/v1/json/";
-	private static String apiUrl 		= "https://api.multisafepay.com/v1/json/";
-	
-	private static String endPoint 		= "";
+
+    private static String USER_AGENT = "Mozilla/5.0";
+    private static String testApiUrl = "https://testapi.multisafepay.com/v1/json/";
+    private static String apiUrl = "https://api.multisafepay.com/v1/json/";
+
+    private String endPoint = "";
+
+	public String apiKey;
+	public boolean testMode;
 
 	/**
 	 * Initialises MspClient
-	 * @param testMode true|false
+     * @param apiKey Key provided by MultisafePay
+	 * @param testMode
 	 */
-	public static void init(Boolean testMode) {
-		MultiSafepayClient.endPoint = MultiSafepayClient.apiUrl;
-		MultiSafepayClient.testMode	= testMode;
-		
-		if (MultiSafepayClient.testMode) 
-			MultiSafepayClient.endPoint = MultiSafepayClient.tesApitUrl;
-		
+	public MultiSafepayClient(String apiKey, boolean testMode) {
+		this.testMode = testMode;
+
+		endPoint = (testMode)
+                ? MultiSafepayClient.testApiUrl
+                : MultiSafepayClient.apiUrl;
 	}
 
-	public static JsonObject GetGateways()
-	{
-		return MultiSafepayClient.sendRequest("gateways");
+	public JsonObject GetGateways() {
+		return sendRequest("gateways");
 	}
 	
-	public static JsonObject GetGateway(String name)
-	{
-		return MultiSafepayClient.sendRequest("gateways/" + name);
+	public JsonObject GetGateway(String name) {
+		return sendRequest("gateways/" + name);
 	}
 	
-	public static JsonObject GetIssuer(String name)
-	{
-		return MultiSafepayClient.sendRequest("issuers/" + name);
+	public JsonObject GetIssuer(String name) {
+		return sendRequest("issuers/" + name);
 	}
 	
-	public static JsonObject GetOrder(String order_id)
-	{
-		return MultiSafepayClient.sendRequest("orders/" + order_id);
+	public JsonObject GetOrder(String order_id) {
+		return sendRequest("orders/" + order_id);
 	}
 	
-	public static JsonObject GetTransaction(String transaction_id)
-	{
-		return MultiSafepayClient.sendRequest("transactions/" + transaction_id);
+	public JsonObject GetTransaction(String transaction_id) {
+		return sendRequest("transactions/" + transaction_id);
 	}
 	
-	public static JsonObject GetOrderTransactions(String order_id)
-	{
-		return MultiSafepayClient.sendRequest("orders/" + order_id +"/transactions");
+	public JsonObject GetOrderTransactions(String order_id) {
+		return sendRequest("orders/" + order_id +"/transactions");
 	}
 	
-	public static JsonObject SetOrderRefund(String order_id,Integer amount,String currency,String description)
-	{
+	public JsonObject SetOrderRefund(String order_id,Integer amount,String currency,String description) {
 		Order order				= new Order();
     	order.currency			= currency;
     	order.amount			= amount;
     	order.description		= description;
     	
-    	return MultiSafepayClient.sendRequest("orders/"+order_id+"/refunds","POST",order);
+    	return sendRequest("orders/"+order_id+"/refunds","POST",order);
 	}
 	
-	public static JsonObject SetOrderInvoice(String order_id,String invoice_id)
-	{
+	public JsonObject SetOrderInvoice(String order_id,String invoice_id) {
 		Order order				= new Order();
 		order.invoice_id		= invoice_id;
 		
-		return MultiSafepayClient.sendRequest("orders/"+order_id,"PATCH",order);
+		return sendRequest("orders/"+order_id,"PATCH",order);
 	}
 	
-	public static JsonObject SetOrderShipping(String order_id,String ship_date,String carrier,String tracktrace_code)
-	{
+	public JsonObject SetOrderShipping(String order_id,String ship_date,String carrier,String tracktrace_code) {
 		Order order				= new Order();
     	order.ship_date			= ship_date;
     	order.carrier			= carrier;
     	order.tracktrace_code	= tracktrace_code;
     	
-    	return MultiSafepayClient.sendRequest("orders/"+order_id,"PATCH",order);
+    	return sendRequest("orders/"+order_id,"PATCH",order);
 	}
 	
-	public static JsonObject createOrder(Order order)
-	{
-		return MultiSafepayClient.sendRequest("orders","POST",order);
+	public JsonObject createOrder(Order order) {
+		return sendRequest("orders","POST",order);
 	}
-	
-	
-	
-	
-	
-	//Private Methods
-	
+
 	/**
 	 * Send Http request to Multisafepay
 	 * @param url
 	 * @param method
-	 * @param jsonString
+	 * @param mspObject
 	 * @return
 	 */
-	public static JsonObject sendRequest(String url, String method,Object mspObject) {
-
+	public JsonObject sendRequest(String url, String method, Object mspObject) {
 		JsonParser parser 		= new JsonParser();
 		JsonObject jsonResponse = null;
 		String _overrideMethod	= null;
@@ -142,9 +124,9 @@ public class MultiSafepayClient {
 		method	= method.toUpperCase();
 		try {
 			
-			System.out.println("Send Api Request: " + MultiSafepayClient.endPoint + url);
+			System.out.println("Send Api Request: " + endPoint + url);
 			
-			URL obj = new URL(MultiSafepayClient.endPoint + url); 
+			URL obj = new URL(endPoint + url);
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();           
 			con.setDoOutput(true);
 			con.setInstanceFollowRedirects(false); 
@@ -156,7 +138,7 @@ public class MultiSafepayClient {
 				con.setRequestProperty("X-HTTP-Method-Override", _overrideMethod);
 			}
 			
-			con.setRequestProperty("api_key", MultiSafepayClient.api_key);
+			con.setRequestProperty("api_key", apiKey);
 			con.setRequestProperty("charset", "utf-8");
 			con.setUseCaches (false);
 			
@@ -206,23 +188,20 @@ public class MultiSafepayClient {
 		return jsonResponse;
 	}
 	
-	public static JsonObject sendRequest(String url, String method) {
-		
-		return MultiSafepayClient.sendRequest(url, method,null);
+	public JsonObject sendRequest(String url, String method) {
+		return sendRequest(url, method,null);
 	}
 	
-	public static JsonObject sendRequest(String url) {
-		
-		return MultiSafepayClient.sendRequest(url, "GET",null);
+	public JsonObject sendRequest(String url) {
+		return sendRequest(url, "GET",null);
 	}
 	
 	/**
 	 * Helper 
-	 * @param jsonString
+	 * @param _object
 	 * @return
 	 */
-	private static String JsonHandler(Object _object)
-	{
+	private String JsonHandler(Object _object) {
 		Gson gson 			= new Gson();
 		String jsonString	= gson.toJson(_object);
 		
@@ -249,8 +228,7 @@ public class MultiSafepayClient {
 	 * @param response
 	 * @return
 	 */
-    public static String getPaymenUrl(JsonObject response)
-    {
+    public String getPaymenUrl(JsonObject response) {
     	String payment_url	= null;
     	try
     	{
@@ -269,8 +247,7 @@ public class MultiSafepayClient {
 	 * @param response
 	 * @return
 	 */
-    public static String getQrUrl(JsonObject response)
-    {
+    public String getQrUrl(JsonObject response) {
     	String qr_url	= null;
     	try
     	{

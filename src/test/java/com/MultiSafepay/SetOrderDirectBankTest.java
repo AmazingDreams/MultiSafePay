@@ -13,8 +13,8 @@ public class SetOrderDirectBankTest {
 	@Test
 	public void main() {
 		java.util.Date date		= new java.util.Date();
-    	
-    	MultiSafepayClient.init(true);
+
+		MultiSafepayClient client = new MultiSafepayClient("", true);
 
     	Order order = new Order();
     	order.setDirectBank(
@@ -31,7 +31,7 @@ public class SetOrderDirectBankTest {
     			
     	);
     	
-    	JsonObject jsonResponse 	= MultiSafepayClient.createOrder(order);
+    	JsonObject jsonResponse = client.createOrder(order);
     	System.out.println(jsonResponse);
 	}
 }

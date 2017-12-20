@@ -8,9 +8,9 @@ public class SetOrderInvoiceTest {
 
 	@Test
 	public void main() {
-    	MultiSafepayClient.init(true);
+        MultiSafepayClient client = new MultiSafepayClient("", true);
 
-    	JsonObject jsonResponse	= MultiSafepayClient.SetOrderInvoice("1418980067470","112345");
+    	JsonObject jsonResponse	= client.SetOrderInvoice("1418980067470","112345");
 
     	System.out.println(jsonResponse);
     }

@@ -14,9 +14,9 @@ public class SetOrderRedirectTest {
 	@Test
 	public void main() {
     	java.util.Date date		= new java.util.Date();
-    	
-    	MultiSafepayClient.init(true);
-    	
+
+        MultiSafepayClient client = new MultiSafepayClient("", true);
+
     	Order order = new Order();
     	order.setRedirect(
     			Long.toString(date.getTime()), 
@@ -37,10 +37,10 @@ public class SetOrderRedirectTest {
     	order.customer.city			= "Amsterdam";
     	order.customer.country		= "NL";
     	
-    	JsonObject jsonResponse 	= MultiSafepayClient.createOrder(order);
+    	JsonObject jsonResponse 	= client.createOrder(order);
     	System.out.println(jsonResponse);
     	
-    	String payment_url			= MultiSafepayClient.getPaymenUrl(jsonResponse);
+    	String payment_url			= client.getPaymenUrl(jsonResponse);
     	System.out.println(payment_url);
     }
 }

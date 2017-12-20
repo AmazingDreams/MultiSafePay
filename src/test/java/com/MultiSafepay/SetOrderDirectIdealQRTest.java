@@ -13,8 +13,8 @@ public class SetOrderDirectIdealQRTest {
 	public void main() {
     	java.util.Date date		= new java.util.Date();
 
-    	MultiSafepayClient.init(true);
-    	
+		MultiSafepayClient client = new MultiSafepayClient("", true);
+
     	Order order = new Order();
     	order.setDirectIdealQR(
     			Long.toString(date.getTime()), 
@@ -26,10 +26,10 @@ public class SetOrderDirectIdealQRTest {
     			
     	);
     	
-    	JsonObject jsonResponse 	= MultiSafepayClient.createOrder(order);
+    	JsonObject jsonResponse = client.createOrder(order);
     	System.out.println(jsonResponse);
     	
-    	String qr_url			= MultiSafepayClient.getQrUrl(jsonResponse);
+    	String qr_url = client.getQrUrl(jsonResponse);
     	System.out.println("QR Url: " + qr_url);
     }
 }

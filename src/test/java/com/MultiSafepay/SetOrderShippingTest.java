@@ -11,10 +11,9 @@ public class SetOrderShippingTest {
 
 	@Test
 	public void main() {
-    	//Initialises MspClient
-    	MultiSafepayClient.init(true);
-    	
-    	JsonObject jsonResponse	= MultiSafepayClient.SetOrderShipping("1418980067470", "16-12-2014", "UPS", "123456");
+        MultiSafepayClient client = new MultiSafepayClient("", true);
+
+    	JsonObject jsonResponse	= client.SetOrderShipping("1418980067470", "16-12-2014", "UPS", "123456");
 
     	System.out.println(jsonResponse);
     }

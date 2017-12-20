@@ -11,9 +11,9 @@ public class GetGatewaysTest {
 
     @Test
     public void main() {
-        MultiSafepayClient.init(true);
+        MultiSafepayClient client = new MultiSafepayClient("",true);
 
-        JsonObject jsonResponse = MultiSafepayClient.GetGateways();
+        JsonObject jsonResponse = client.GetGateways();
 
         System.out.println(jsonResponse);
     }

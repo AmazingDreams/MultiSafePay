@@ -22,18 +22,18 @@ public class SetOrderFastCheckoutTest {
 	public void main() {
 		date		= new java.util.Date();
     	Order order	= null;
-    	 
-    	MultiSafepayClient.init(true);
-    	
+
+        MultiSafepayClient client = new MultiSafepayClient("", true);
+
     	order 		= noShippingMethod();
     	//order 	= shippingMethodPickup();
     	//order 	= alternateCustomTaxTable();
     	
 
-    	JsonObject jsonResponse 	= MultiSafepayClient.createOrder(order);
+    	JsonObject jsonResponse 	= client.createOrder(order);
     	System.out.println(jsonResponse);
     	
-    	String payment_url			= MultiSafepayClient.getPaymenUrl(jsonResponse);
+    	String payment_url			= client.getPaymenUrl(jsonResponse);
     	System.out.println(payment_url);
 
 	}

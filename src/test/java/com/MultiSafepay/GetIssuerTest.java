@@ -11,9 +11,9 @@ public class GetIssuerTest {
 
 	@Test
 	public void main() {
-		MultiSafepayClient.init(true);
+		MultiSafepayClient client = new MultiSafepayClient("", true);
 
-		JsonObject jsonResponse = MultiSafepayClient.GetIssuer("ideal");
+		JsonObject jsonResponse = client.GetIssuer("ideal");
 
 		System.out.println(jsonResponse);
 	}

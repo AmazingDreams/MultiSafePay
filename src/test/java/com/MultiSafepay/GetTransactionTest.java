@@ -8,9 +8,9 @@ public class GetTransactionTest {
 
 	@Test
 	public void main() {
-		MultiSafepayClient.init(true);
+		MultiSafepayClient client = new MultiSafepayClient("", true);
 
-		JsonObject jsonResponse = MultiSafepayClient.GetTransaction("9941812537632491");
+		JsonObject jsonResponse = client.GetTransaction("9941812537632491");
 
 		System.out.println(jsonResponse);
 	}
