@@ -20,7 +20,7 @@ public class SetOrderDirectIDEALTest {
     	order.setDirectIdeal(
     			Long.toString(date.getTime()), 
     			"Product description", 
-    			1000, 
+    			1000d,
     			"EUR",
     			new PaymentOptions("http://example.com/notify", "http://example.com/success", "http://example.com/failed"),
     			GatewayInfo.Ideal("3151")

@@ -21,7 +21,7 @@ public class SetOrderRedirectTest {
     	order.setRedirect(
     			Long.toString(date.getTime()), 
     			"Product description", 
-    			1000, 
+    			1000d,
     			"EUR", 
     			new PaymentOptions(
     					"http://example.com/notify", 

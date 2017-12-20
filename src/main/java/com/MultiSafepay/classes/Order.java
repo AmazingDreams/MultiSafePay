@@ -7,7 +7,7 @@ public class Order {
 	public String cost				= null;
 	public String type				= null;
 	public String currency			= null;
-	public Integer amount			= null;
+	public Double amount			= null;
 	public String description		= null;
 	public String manual			= null;
 	public String gateway			= null;
@@ -24,10 +24,10 @@ public class Order {
 	public String var1				= null;
 	public String var2				= null;
 	public String var3				= null;
-	
+
 	public String use_shipping_notification	= null;
 	public String use_field_notifications 	= null;
-	
+
 	public Customer customer 				= null;
 	public Delivery delivery 				= null;
 	public Plugin plugin 					= null;
@@ -38,8 +38,8 @@ public class Order {
 	public CustomFields custom_fields		= null;
 	public CustomInfo custom_info			= null;
 	public CheckoutOptions checkout_options	= null;
-	
-	public Order setRedirect(String order_id,String description,Integer amount,String currency,PaymentOptions payment_options)
+
+	public Order setRedirect(String order_id,String description,Double amount,String currency,PaymentOptions payment_options)
 	{
 		this.type 				= "redirect";
 		this.order_id 			= order_id;
@@ -49,8 +49,8 @@ public class Order {
 		this.payment_options 	= payment_options;
 		return this;
 	}
-	
-	public Order setFastCheckout(String order_id,String description,Integer amount,String currency,PaymentOptions payment_options,ShoppingCart shopping_cart,CheckoutOptions checkout_options)
+
+	public Order setFastCheckout(String order_id,String description,Double amount,String currency,PaymentOptions payment_options,ShoppingCart shopping_cart,CheckoutOptions checkout_options)
 	{
 		this.type 				= "checkout";
 		this.order_id 			= order_id;
@@ -62,8 +62,8 @@ public class Order {
 		this.checkout_options 	= checkout_options;
 		return this;
 	}
-	
-	public Order setDirectPayAfter(String order_id,String description,Integer amount,String currency,PaymentOptions payment_options,GatewayInfo gateway_info,ShoppingCart shopping_cart,CheckoutOptions checkout_options, Customer customer)
+
+	public Order setDirectPayAfter(String order_id,String description,Double amount,String currency,PaymentOptions payment_options,GatewayInfo gateway_info,ShoppingCart shopping_cart,CheckoutOptions checkout_options, Customer customer)
 	{
 		this.type 				= "direct";
 		this.gateway 			= "PAYAFTER";
@@ -78,8 +78,8 @@ public class Order {
 		this.customer 			= customer;
 		return this;
 	}
-	
-	public Order setDirectEinvoice(String order_id,String description,Integer amount,String currency,PaymentOptions payment_options,GatewayInfo gateway_info,ShoppingCart shopping_cart,CheckoutOptions checkout_options, Customer customer)
+
+	public Order setDirectEinvoice(String order_id,String description,Double amount,String currency,PaymentOptions payment_options,GatewayInfo gateway_info,ShoppingCart shopping_cart,CheckoutOptions checkout_options, Customer customer)
 	{
 		this.type 				= "direct";
 		this.gateway 			= "EINVOICE";
@@ -94,8 +94,8 @@ public class Order {
 		this.customer 			= customer;
 		return this;
 	}
-	
-	public Order setDirectKlarna(String order_id,String description,Integer amount,String currency,PaymentOptions payment_options,GatewayInfo gateway_info,ShoppingCart shopping_cart,CheckoutOptions checkout_options, Customer customer,Delivery delivery)
+
+	public Order setDirectKlarna(String order_id,String description,Double amount,String currency,PaymentOptions payment_options,GatewayInfo gateway_info,ShoppingCart shopping_cart,CheckoutOptions checkout_options, Customer customer,Delivery delivery)
 	{
 		this.type 				= "direct";
 		this.gateway 			= "KLARNA";
@@ -111,8 +111,8 @@ public class Order {
 		this.delivery 			= delivery;
 		return this;
 	}
-	
-	public Order setDirectBank(String order_id,String description,Integer amount,String currency,GatewayInfo gateway_info)
+
+	public Order setDirectBank(String order_id,String description,Double amount,String currency,GatewayInfo gateway_info)
 	{
 		this.type 				= "direct";
 		this.gateway			= "DIRECTBANK";
@@ -123,8 +123,8 @@ public class Order {
 		this.gateway_info 		= gateway_info;
 		return this;
 	}
-	
-	public Order setDirectIdeal(String order_id,String description,Integer amount,String currency,PaymentOptions payment_options,GatewayInfo gateway_info)
+
+	public Order setDirectIdeal(String order_id,String description,Double amount,String currency,PaymentOptions payment_options,GatewayInfo gateway_info)
 	{
 		this.type 				= "direct";
 		this.gateway			= "IDEAL";
@@ -136,8 +136,8 @@ public class Order {
 		this.gateway_info 		= gateway_info;
 		return this;
 	}
-	
-	public Order setDirectIdealQR(String order_id,String description,Integer amount,String currency,PaymentOptions payment_options,GatewayInfo gateway_info)
+
+	public Order setDirectIdealQR(String order_id,String description,Double amount,String currency,PaymentOptions payment_options,GatewayInfo gateway_info)
 	{
 		this.type 				= "redirect";
 		this.gateway			= "IDEALQR";

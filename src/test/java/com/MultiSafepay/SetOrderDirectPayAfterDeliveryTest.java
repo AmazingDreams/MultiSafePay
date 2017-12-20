@@ -41,7 +41,7 @@ public class SetOrderDirectPayAfterDeliveryTest {
     	items.add(ShoppingCartItem.add(	"Test Product","Sample description","200.0","EUR","1","123456",""));
     	
     	Order order = new Order();
-    	order.setDirectPayAfter(Long.toString(date.getTime()), "Product description", 24200, "EUR", 
+    	order.setDirectPayAfter(Long.toString(date.getTime()), "Product description", 24200d, "EUR",
     			new PaymentOptions("http://example.com/notify", "http://example.com/success", "http://example.com/failed"),
     			GatewayInfo.PayAfterDelivery("1980-01-30","NL39 RABO 0300 0652 64","+31 (0)20 8500 500","test@multisafepay.com","referrer","user-agent"),
     			new ShoppingCart(items),
