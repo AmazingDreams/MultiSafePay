@@ -1,4 +1,4 @@
-package tests;
+package com.MultiSafepay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import com.MultiSafepay.classes.*;
 import com.MultiSafepay.client.MultiSafepayClient;
 import com.google.gson.JsonObject;
+import org.junit.Test;
 
 /**
  * Creates a Checkout Order
@@ -13,12 +14,12 @@ import com.google.gson.JsonObject;
  * @author Multisafepay.com
  */
 
-public class SetOrderFastCheckout {
+public class SetOrderFastCheckoutTest {
 
 	static java.util.Date date	= null;
-	
-	public static void main(String[] args) {
-	      
+
+	@Test
+	public void main() {
 		date		= new java.util.Date();
     	Order order	= null;
     	 
@@ -37,8 +38,7 @@ public class SetOrderFastCheckout {
 
 	}
 	
-	public static Order noShippingMethod()
-	{
+	public static Order noShippingMethod() {
 		CheckoutOptions checkout_options	= new CheckoutOptions();
     	checkout_options.no_shipping_method = true;
     	

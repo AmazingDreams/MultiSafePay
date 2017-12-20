@@ -1,19 +1,19 @@
-package tests;
+package com.MultiSafepay;
 
 import com.MultiSafepay.client.MultiSafepayClient;
 import com.google.gson.JsonObject;
+import org.junit.Test;
 
 /**
  * @author Multisafepay.com
  */
-public class GetGateways {
+public class GetGatewayTest {
 
-    public static void main(String[] args) {
-     
+	@Test
+    public void main() {
     	MultiSafepayClient.init(true);
     	
-    	JsonObject jsonResponse = MultiSafepayClient.GetGateways();
-    	
+    	JsonObject jsonResponse = MultiSafepayClient.GetGateway("VISA");
     	System.out.println(jsonResponse);
     }
 }

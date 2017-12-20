@@ -1,4 +1,4 @@
-package tests;
+package com.MultiSafepay;
 
 /**
  * @author Multisafepay.com
@@ -6,16 +6,16 @@ package tests;
 import com.MultiSafepay.classes.*;
 import com.MultiSafepay.client.MultiSafepayClient;
 import com.google.gson.JsonObject;
+import org.junit.Test;
 
-public class SetOrderDirectBank {
+public class SetOrderDirectBankTest {
 
-	public static void main(String[] args) {
-	
+	@Test
+	public void main() {
 		java.util.Date date		= new java.util.Date();
     	
     	MultiSafepayClient.init(true);
-    	
-    	
+
     	Order order = new Order();
     	order.setDirectBank(
     			Long.toString(date.getTime()), 

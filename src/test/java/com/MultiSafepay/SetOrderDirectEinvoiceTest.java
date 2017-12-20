@@ -1,4 +1,4 @@
-package tests;
+package com.MultiSafepay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,15 +6,16 @@ import java.util.List;
 import com.MultiSafepay.classes.*;
 import com.MultiSafepay.client.MultiSafepayClient;
 import com.google.gson.JsonObject;
+import org.junit.Test;
 
 /**
  * @author Multisafepay.com
  */
 
-public class SetOrderDirectEinvoice {
+public class SetOrderDirectEinvoiceTest {
 
-	public static void main(String[] args) {
-	      
+	@Test
+	public void main() {
     	java.util.Date date		= new java.util.Date();
     	
     	MultiSafepayClient.init(true);

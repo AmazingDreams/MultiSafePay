@@ -1,15 +1,16 @@
-package tests;
+package com.MultiSafepay;
 
 import com.MultiSafepay.client.MultiSafepayClient;
 import com.google.gson.JsonObject;
+import org.junit.Test;
 
 /**
  * @author Multisafepay.com
  */
-public class SetOrderShipping {
+public class SetOrderShippingTest {
 
-	public static void main(String[] args) {
- 	
+	@Test
+	public void main() {
     	//Initialises MspClient
     	MultiSafepayClient.init(true);
     	

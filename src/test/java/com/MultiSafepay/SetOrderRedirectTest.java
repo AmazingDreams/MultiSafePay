@@ -1,17 +1,18 @@
-package tests;
+package com.MultiSafepay;
 
 import com.MultiSafepay.classes.*;
 import com.MultiSafepay.client.MultiSafepayClient;
 import com.google.gson.JsonObject;
+import org.junit.Test;
 
 /**
  * @author Multisafepay.com
  */
 
-public class SetOrderRedirect {
+public class SetOrderRedirectTest {
 
-    public static void main(String[] args) {
-      
+	@Test
+	public void main() {
     	java.util.Date date		= new java.util.Date();
     	
     	MultiSafepayClient.init(true);

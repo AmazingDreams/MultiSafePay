@@ -1,35 +1,35 @@
-package tests;
+package com.MultiSafepay;
 
-import com.MultiSafepay.classes.*;
+import com.MultiSafepay.classes.GatewayInfo;
+import com.MultiSafepay.classes.Order;
+import com.MultiSafepay.classes.PaymentOptions;
 import com.MultiSafepay.client.MultiSafepayClient;
 import com.google.gson.JsonObject;
+import org.junit.Test;
 
-/**
- * @author Multisafepay.com
- */
-public class SetOrderDirectIDEAL {
+public class SetOrderDirectIdealQRTest {
 
-    public static void main(String[] args) {
-      
+	@Test
+	public void main() {
     	java.util.Date date		= new java.util.Date();
 
     	MultiSafepayClient.init(true);
     	
     	Order order = new Order();
-    	order.setDirectIdeal(
+    	order.setDirectIdealQR(
     			Long.toString(date.getTime()), 
     			"Product description", 
     			1000, 
     			"EUR",
     			new PaymentOptions("http://example.com/notify", "http://example.com/success", "http://example.com/failed"),
-    			GatewayInfo.Ideal("3151")
+    			GatewayInfo.IdealQR(300)
     			
     	);
     	
     	JsonObject jsonResponse 	= MultiSafepayClient.createOrder(order);
     	System.out.println(jsonResponse);
     	
-    	String payment_url			= MultiSafepayClient.getPaymenUrl(jsonResponse);
-    	System.out.println("Payment Url: " + payment_url);
+    	String qr_url			= MultiSafepayClient.getQrUrl(jsonResponse);
+    	System.out.println("QR Url: " + qr_url);
     }
 }

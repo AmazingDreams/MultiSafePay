@@ -1,11 +1,13 @@
-package tests;
+package com.MultiSafepay;
 
 import com.MultiSafepay.client.MultiSafepayClient;
 import com.google.gson.JsonObject;
+import org.junit.Test;
 
-public class SetOrderInvoice {
-	public static void main(String[] args) {
-	      
+public class SetOrderInvoiceTest {
+
+	@Test
+	public void main() {
     	MultiSafepayClient.init(true);
 
     	JsonObject jsonResponse	= MultiSafepayClient.SetOrderInvoice("1418980067470","112345");
