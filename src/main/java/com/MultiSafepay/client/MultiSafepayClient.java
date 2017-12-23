@@ -65,7 +65,7 @@ public class MultiSafepayClient {
 		return sendRequest("orders/" + order_id +"/transactions");
 	}
 	
-	public JsonObject SetOrderRefund(String order_id,Double amount,String currency,String description) {
+	public JsonObject SetOrderRefund(String order_id,Integer amount,String currency,String description) {
 		Order order				= new Order();
     	order.currency			= currency;
     	order.amount			= amount;

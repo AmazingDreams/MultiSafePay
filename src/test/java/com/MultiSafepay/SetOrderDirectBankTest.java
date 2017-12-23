@@ -20,7 +20,7 @@ public class SetOrderDirectBankTest {
     	order.setDirectBank(
     			Long.toString(date.getTime()), 
     			"Product description", 
-    			1000d,
+    			1000, 
     			"EUR", 
     			GatewayInfo.DirectBank(
     					"John Doe", 

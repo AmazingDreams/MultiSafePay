@@ -19,7 +19,7 @@ public class SetOrderDirectIdealQRTest {
     	order.setDirectIdealQR(
     			Long.toString(date.getTime()), 
     			"Product description", 
-    			1000d,
+    			1000, 
     			"EUR",
     			new PaymentOptions("http://example.com/notify", "http://example.com/success", "http://example.com/failed"),
     			GatewayInfo.IdealQR(300)

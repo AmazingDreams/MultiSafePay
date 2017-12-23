@@ -46,7 +46,7 @@ public class SetOrderFastCheckoutTest {
     	items.add(ShoppingCartItem.add(	"Test Product","Sample description","90.00","EUR","1","123456","none",Weight.set("KG", "12")));
     	
     	Order order = new Order();
-    	order.setFastCheckout(Long.toString(date.getTime()), "Product description", 1000d, "EUR",
+    	order.setFastCheckout(Long.toString(date.getTime()), "Product description", 1000, "EUR", 
     			new PaymentOptions("http://example.com/notify", "http://example.com/success", "http://example.com/failed"),
     			new ShoppingCart(items),
     			checkout_options
@@ -65,7 +65,7 @@ public class SetOrderFastCheckoutTest {
     	items.add(ShoppingCartItem.add(	"Test Product","Sample description","90.00","EUR","1","123456","none",Weight.set("KG", "12")));
     	
     	Order order = new Order();
-    	order.setFastCheckout(Long.toString(date.getTime()), "Product description", 1000d, "EUR",
+    	order.setFastCheckout(Long.toString(date.getTime()), "Product description", 1000, "EUR", 
     			new PaymentOptions("http://example.com/notify", "http://example.com/success", "http://example.com/failed"),
     			new ShoppingCart(items),
     			checkout_options
@@ -100,7 +100,7 @@ public class SetOrderFastCheckoutTest {
     	items.add(ShoppingCartItem.add(	"Test Product","Sample description","90.00","EUR","1","123456","Alternate",Weight.set("KG", "12")));
     	
     	Order order = new Order();
-    	order.setFastCheckout(Long.toString(date.getTime()), "Product description", 1000d, "EUR",
+    	order.setFastCheckout(Long.toString(date.getTime()), "Product description", 1000, "EUR", 
     			new PaymentOptions("http://example.com/notify", "http://example.com/success", "http://example.com/failed"),
     			new ShoppingCart(items),
     			checkout_options

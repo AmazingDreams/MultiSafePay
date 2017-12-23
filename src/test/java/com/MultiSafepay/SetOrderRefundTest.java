@@ -13,7 +13,7 @@ public class SetOrderRefundTest {
 	public void main() {
         MultiSafepayClient client = new MultiSafepayClient("", true);
 
-    	JsonObject jsonResponse	= client.SetOrderRefund("1418980067470",100d,"EUR","Refund order");
+    	JsonObject jsonResponse	= client.SetOrderRefund("1418980067470",100,"EUR","Refund order");
 
     	System.out.println(jsonResponse);
     }
